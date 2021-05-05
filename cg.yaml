@@ -15,7 +15,7 @@ data:
       scheme: https
       static_configs:
       - targets:
-        - 192.168.11.114:2379
+        - xx-xx-xx-xx:2379
       tls_config:
         ca_file: /etc/prometheus/secrets/etcd-certs/ca.crt
         cert_file: /etc/prometheus/secrets/etcd-certs/healthcheck-client.crt

@@ -74,6 +74,16 @@ data:
       tls_config:
         ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
         insecure_skip_verify: true
+      relabel_configs:
+      - separator: ;
+        regex: __meta_kubernetes_node_label_(.+)
+        replacement: $1
+        action: labelmap
+      - separator: ;
+        regex: (.*)
+        target_label: __metrics_path__
+        replacement: /metrics/cadvisor
+        action: replace
       metric_relabel_configs:
         - source_labels: [instance]
           separator: ;
@@ -165,3 +175,11 @@ data:
         target_label: instance
         regex: (.+):(.+)
         replacement: $1
+    - job_name: node_exporter
+      honor_timestamps: true
+      scrape_interval: 15s
+      scrape_timeout: 10s
+      static_configs:
+      - targets:
+        - xx-xx-xx-xx:9100
+    

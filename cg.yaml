@@ -179,7 +179,7 @@ data:
       honor_timestamps: true
       scrape_interval: 15s
       scrape_timeout: 10s
-      static_configs:
-      - targets:
-        - xx-xx-xx-xx:9100
-    
+      file_sd_configs:
+      - files:
+        - /prometheus/sd/file_sd_by_prome_shared.json
+        refresh_interval: 10s
